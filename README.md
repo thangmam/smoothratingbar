@@ -1,4 +1,4 @@
-# smooth_star_rating 0.0.1
+# smooth_star_rating 0.0.2
 
 A Star rating with touch swipe enabled increment/decrement
 * Supports half rate and full rate (1.0 or 0.5)
