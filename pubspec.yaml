@@ -1,8 +1,8 @@
 name: smooth_star_rating
 description: A smooth rating bar
-version: 0.0.1
+version: 0.0.2
 author: Thangmam <infimatet@gmail.com>
-homepage: https://github.com/thangmam/
+homepage: https://github.com/thangmam/smoothratingbar.git
 
 environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
