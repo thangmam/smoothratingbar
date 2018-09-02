@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 typedef void RatingChangeCallback(double rating);
 
-class StarRating extends StatelessWidget {
+class SmoothStarRating extends StatelessWidget {
   final int starCount;
   final double rating;
   final RatingChangeCallback onRatingChanged;
@@ -14,7 +14,7 @@ class StarRating extends StatelessWidget {
   final double size;
   final bool allowHalfRating;
 
-  StarRating(
+  SmoothStarRating(
       {this.starCount = 5,
       this.rating = 0.0,
       this.onRatingChanged,
@@ -58,7 +58,7 @@ class StarRating extends StatelessWidget {
         if (newRating < 0) {
           newRating = 0.0;
         }
-        this.onRatingChanged ?? onRatingChanged(newRating);
+        if (this.onRatingChanged != null) onRatingChanged(newRating);
       },
       child: icon,
     );
