@@ -45,3 +45,12 @@ size                            -   The size of a single star
 color                           -   The body color of star
 borderColor                     -   The border color of star
 ```
+
+### Screenshots
+
+#### Full Rating
+![alt text](https://raw.githubusercontent.com/thangmam/smoothratingbar/master/screenshots/fullrating.gif "Full rating")
+
+#### Half Rating
+
+![alt text](https://raw.githubusercontent.com/thangmam/smoothratingbar/master/screenshots/halfrating.gif  "Half Rating")
