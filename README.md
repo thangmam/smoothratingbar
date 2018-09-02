@@ -12,7 +12,7 @@ In your flutter project add the dependency:
 ```
     dependencies:
         ...
-        smooth_star_rating: ^0.0.1
+        smooth_star_rating: ^0.0.2
 ```
 
 ## Usage example
