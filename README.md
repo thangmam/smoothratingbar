@@ -1,4 +1,3 @@
-# smooth_star_rating 0.0.2
 
 A Star rating with touch swipe enabled increment/decrement
 * Supports half rate and full rate (1.0 or 0.5)
@@ -12,7 +11,7 @@ In your flutter project add the dependency:
 ```
     dependencies:
         ...
-        smooth_star_rating: ^0.0.2
+        smooth_star_rating: ^0.0.4
 ```
 
 ## Usage example
