@@ -11,7 +11,7 @@ In your flutter project add the dependency:
 ```
     dependencies:
         ...
-        smooth_star_rating: ^0.0.4
+        smooth_star_rating: 1.0.0
 ```
 
 ## Usage example
@@ -20,7 +20,7 @@ import 'package:smooth_star_rating/smooth_star_rating.dart';
 ``` 
 
 ```java 
-StarRating(
+SmoothStarRating(
           allowHalfRating: false,
           onRatingChanged: (v) {
             rating = v;
