@@ -47,6 +47,9 @@ class SmoothStarRating extends StatelessWidget {
     }
 
     return new GestureDetector(
+      onTap: () {
+        if (this.onRatingChanged != null) onRatingChanged(index + 1.0);
+      },
       onHorizontalDragUpdate: (dragDetails) {
         RenderBox box = context.findRenderObject();
         var _pos = box.globalToLocal(dragDetails.globalPosition);
