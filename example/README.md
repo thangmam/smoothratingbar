@@ -1,8 +1,7 @@
 # example
 
-A new Flutter project.
+Smooth rating bar example project.
 
 ## Getting Started
 
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+Check out the example source code from [here](https://github.com/thangmam/smoothratingbar/tree/master/example).
