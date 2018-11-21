@@ -1,17 +1,18 @@
 
-A Star rating with touch swipe enabled increment/decrement
+A Star rating with touch and swipe rate enabled
 * Supports half rate and full rate (1.0 or 0.5)
 * Swipe for incrementing/decrementing rate amount
 * Change star body and boundary colors independently
 * Control size of the star rating
 * Set your desired total Star count
+* Now Supports click-to-rate
 ## Getting Started
 
 In your flutter project add the dependency:
 ```
     dependencies:
         ...
-        smooth_star_rating: 1.0.0
+        smooth_star_rating: 1.0.1
 ```
 
 ## Usage example
