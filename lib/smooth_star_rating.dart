@@ -21,7 +21,9 @@ class SmoothStarRating extends StatelessWidget {
       this.color,
       this.borderColor,
       this.size,
-      this.allowHalfRating = true});
+      this.allowHalfRating = true}) {
+    assert(this.rating != null);
+  }
 
   Widget buildStar(BuildContext context, int index) {
     Icon icon;
