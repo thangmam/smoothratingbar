@@ -15,12 +15,48 @@ class SmoothStarRating extends StatelessWidget {
         assert(rating != null),
         assert(allowHalfRating != null);
 
+  /// The maximum amount of stars.
   final int starCount;
+
+  /// The rating itself.
+  ///
+  /// Caution: This widget doesn't take care of the state itself, so you'll need
+  /// to store the rating for it (just like how `Checkbox`es work).
+  ///
+  /// Example:
+  /// ```dart
+  /// ...
+  /// _MyWidgetState extends State<MyWidget> {
+  ///   double rating = 0;
+  ///
+  ///   @override
+  ///   Widget build(BuildContext context) {
+  ///     return SmoothStarRating(
+  ///       onRatingChanged: (r) {
+  ///         setState(() {
+  ///           rating = r;
+  ///         });
+  ///       },
+  ///       rating: rating,
+  ///     )
+  ///   }
+  /// }
+  /// ```
   final double rating;
+
+  /// A callback for when the rating is changed.
   final void Function(double rating) onRatingChanged;
+
+  /// The color of the filled and half-filled stars.
   final Color color;
+
+  /// The color of empty stars.
   final Color borderColor;
+
+  /// The size of the stars.
   final double size;
+
+  /// Whether to allow the user to give rate using half stars.
   final bool allowHalfRating;
 
   @override

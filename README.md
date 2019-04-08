@@ -1,56 +1,57 @@
+A star rating with touch and swipe rate enabled.
 
-A Star rating with touch and swipe rate enabled
-* Supports half rate and full rate (1.0 or 0.5)
+* Supports half rate (with half-filled stars) and full rate (only full stars)
 * Swipe for incrementing/decrementing rate amount
 * Change star body and boundary colors independently
 * Control size of the star rating
 * Set your desired total Star count
 * Supports click-to-rate
+
 ## Getting Started
 
-In your flutter project add the dependency:
+Add the dependency in your Flutter project:
 ```
-    dependencies:
-        ...
-        smooth_star_rating: 1.0.2
+dependencies:
+  ...
+  smooth_star_rating: 1.0.2
 ```
 
 ## Usage example
-``` 
+```
 import 'package:smooth_star_rating/smooth_star_rating.dart'; 
-``` 
+```
 
-```java 
+This widget doesn't take care of the state itself, so you'll need to store the
+rating for it (just like how `Checkbox`es work).
+
+In your state, simply add
+
+```dart
+double rating = 0;
+```
+
+and in your `build` method, you'll be able to use the widget like this:
+
+```dart
 SmoothStarRating(
-          allowHalfRating: false,
-          onRatingChanged: (v) {
-            rating = v;
-            setState(() {});
-          },
-          starCount: 5,
-          rating: rating,
-          size: 40.0,
-          color: Colors.green,
-          borderColor: Colors.green,
-        )
+  allowHalfRating: false,
+  onRatingChanged: (v) {
+    setState(() {
+      rating = v;
+    });
+  },
+  starCount: 5,
+  rating: rating,
+  size: 40,
+  color: Colors.green,
+  borderColor: Colors.green,
+)
 ```
 
-## Constructor parameters
-``` 
-allowHalfRating                 -   Whether to use whole number for rating(1.0  or 0.5)
-onRatingChanged(int rating)     -   Rating changed callback
-starCount                       -   The maximum amount of stars
-rating                          -   The current value of rating
-size                            -   The size of a single star
-color                           -   The body color of star
-borderColor                     -   The border color of star
-```
+## Screenshots
 
-### Screenshots
-
-#### Full Rating
+### Full Rating
 ![alt text](https://raw.githubusercontent.com/thangmam/smoothratingbar/master/screenshots/fullrating.gif "Full rating")
 
-#### Half Rating
-
+### Half Rating
 ![alt text](https://raw.githubusercontent.com/thangmam/smoothratingbar/master/screenshots/halfrating.gif  "Half Rating")
