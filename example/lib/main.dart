@@ -15,22 +15,21 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Rating bar demo',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
+      theme: ThemeData(primarySwatch: Colors.green),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Center(
-            child: SmoothStarRating(
-          rating: rating,
-          size: 45,
-          starCount: 5,
-          onRatingChanged: (value) {
-            setState(() {
-              rating = value;
-            });
-          },
-        )),
+          child: SmoothStarRating(
+            rating: rating,
+            size: 45,
+            starCount: 5,
+            onRatingChanged: (value) {
+              setState(() {
+                rating = value;
+              });
+            },
+          ),
+        ),
       ),
     );
   }
