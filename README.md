@@ -6,13 +6,15 @@ A Star rating with touch and swipe rate enabled
 * Control size of the star rating
 * Set your desired total Star count
 * Supports click-to-rate
+* Spacing between stars
+
 ## Getting Started
 
 In your flutter project add the dependency:
 ```
     dependencies:
         ...
-        smooth_star_rating: 1.0.2
+        smooth_star_rating: 1.0.3
 ```
 
 ## Usage example
@@ -32,6 +34,7 @@ SmoothStarRating(
           size: 40.0,
           color: Colors.green,
           borderColor: Colors.green,
+          spacing:0.0
         )
 ```
 
@@ -44,6 +47,7 @@ rating                          -   The current value of rating
 size                            -   The size of a single star
 color                           -   The body color of star
 borderColor                     -   The border color of star
+spacing                         -   Spacing between stars(default is 0.0)
 ```
 
 ### Screenshots

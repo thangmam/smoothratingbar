@@ -1,3 +1,6 @@
+## [1.0.3] - 29/05/2019
+### Added support for a spacing between stars
+
 ## [1.0.2] - 29/03/2019
 ### assertion added for checking nullability of rating variable which causes the exception "The method '_greaterThanFromInteger' was called on null."
 

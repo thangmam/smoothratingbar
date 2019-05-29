@@ -1,7 +1,6 @@
 library smooth_star_rating;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 
 typedef void RatingChangeCallback(double rating);
 
@@ -13,6 +12,7 @@ class SmoothStarRating extends StatelessWidget {
   final Color borderColor;
   final double size;
   final bool allowHalfRating;
+  final double spacing;
 
   SmoothStarRating(
       {this.starCount = 5,
@@ -21,6 +21,7 @@ class SmoothStarRating extends StatelessWidget {
       this.color,
       this.borderColor,
       this.size,
+      this.spacing = 0.0,
       this.allowHalfRating = true}) {
     assert(this.rating != null);
   }
@@ -75,6 +76,7 @@ class SmoothStarRating extends StatelessWidget {
       color: Colors.transparent,
       child: new Wrap(
           alignment: WrapAlignment.start,
+          spacing: spacing,
           children: new List.generate(
               starCount, (index) => buildStar(context, index))),
     );

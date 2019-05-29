@@ -25,6 +25,7 @@ class _MyAppState extends State<MyApp> {
           rating: rating,
           size: 45,
           starCount: 5,
+          spacing: 2.0,
           onRatingChanged: (value) {
             setState(() {
               rating = value;
