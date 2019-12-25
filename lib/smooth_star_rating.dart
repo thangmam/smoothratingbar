@@ -15,8 +15,8 @@ class SmoothStarRating extends StatelessWidget {
   final double spacing;
 
   final Widget emptyStar;
-  final Widget halfStar;
-  final Widget fullStar;
+  final Widget halfFilledStar;
+  final Widget fullFilledStar;
 
   SmoothStarRating({
     this.starCount = 5,
@@ -26,8 +26,8 @@ class SmoothStarRating extends StatelessWidget {
     this.borderColor,
     this.size = 25.0,
     this.emptyStar,
-    this.halfStar,
-    this.fullStar,
+    this.halfFilledStar,
+    this.fullFilledStar,
     this.spacing = 0.0,
     this.allowHalfRating = true,
   }) {
@@ -43,13 +43,13 @@ class SmoothStarRating extends StatelessWidget {
         size: size,
       );
     } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) && index < rating) {
-      star = halfStar ?? new Icon(
+      star = halfFilledStar ?? new Icon(
         Icons.star_half,
         color: color ?? Theme.of(context).primaryColor,
         size: size,
       );
     } else {
-      star = fullStar ?? new Icon(
+      star = fullFilledStar ?? new Icon(
         Icons.star,
         color: color ?? Theme.of(context).primaryColor,
         size: size,
@@ -57,7 +57,7 @@ class SmoothStarRating extends StatelessWidget {
     }
 
     return new GestureDetector(
-      onTap: () {
+      onTapDown: (_) {
         if (this.onRatingChanged != null) onRatingChanged(index + 1.0);
       },
       onHorizontalDragUpdate: (dragDetails) {
@@ -82,10 +82,10 @@ class SmoothStarRating extends StatelessWidget {
     return new Material(
       color: Colors.transparent,
       child: new Wrap(
-          alignment: WrapAlignment.start,
-          spacing: spacing,
-          children: new List.generate(
-              starCount, (index) => buildStar(context, index))),
+        alignment: WrapAlignment.start,
+        spacing: spacing,
+        children: new List.generate(starCount, (index) => buildStar(context, index))
+      ),
     );
   }
 }
