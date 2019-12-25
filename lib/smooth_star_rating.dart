@@ -10,53 +10,60 @@ class SmoothStarRating extends StatelessWidget {
   final RatingChangeCallback onRatingChanged;
   final Color color;
   final Color borderColor;
-  final double size;
+  final double width;
   final bool allowHalfRating;
   final double spacing;
 
-  SmoothStarRating(
-      {this.starCount = 5,
-      this.rating = 0.0,
-      this.onRatingChanged,
-      this.color,
-      this.borderColor,
-      this.size,
-      this.spacing = 0.0,
-      this.allowHalfRating = true}) {
+  final Widget emptyStar;
+  final Widget halfFilledStar;
+  final Widget fullFilledStar;
+
+  SmoothStarRating({
+    this.starCount = 5,
+    this.rating = 0.0,
+    this.onRatingChanged,
+    this.color,
+    this.borderColor,
+    this.width = 25.0,
+    this.emptyStar,
+    this.halfFilledStar,
+    this.fullFilledStar,
+    this.spacing = 0.0,
+    this.allowHalfRating = true,
+  }) {
     assert(this.rating != null);
   }
 
   Widget buildStar(BuildContext context, int index) {
-    Icon icon;
+    Widget star;
     if (index >= rating) {
-      icon = new Icon(
+      star = emptyStar ?? new Icon(
         Icons.star_border,
         color: borderColor ?? Theme.of(context).primaryColor,
-        size: size ?? 25.0,
+        size: width,
       );
-    } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) &&
-        index < rating) {
-      icon = new Icon(
+    } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) && index < rating) {
+      star = halfFilledStar ?? new Icon(
         Icons.star_half,
         color: color ?? Theme.of(context).primaryColor,
-        size: size ?? 25.0,
+        size: width,
       );
     } else {
-      icon = new Icon(
+      star = fullFilledStar ?? new Icon(
         Icons.star,
         color: color ?? Theme.of(context).primaryColor,
-        size: size ?? 25.0,
+        size: width,
       );
     }
 
     return new GestureDetector(
-      onTap: () {
+      onTapDown: (_) {
         if (this.onRatingChanged != null) onRatingChanged(index + 1.0);
       },
       onHorizontalDragUpdate: (dragDetails) {
         RenderBox box = context.findRenderObject();
         var _pos = box.globalToLocal(dragDetails.globalPosition);
-        var i = _pos.dx / size;
+        var i = _pos.dx / width;
         var newRating = allowHalfRating ? i : i.round().toDouble();
         if (newRating > starCount) {
           newRating = starCount.toDouble();
@@ -66,7 +73,7 @@ class SmoothStarRating extends StatelessWidget {
         }
         if (this.onRatingChanged != null) onRatingChanged(newRating);
       },
-      child: icon,
+      child: star,
     );
   }
 
@@ -75,10 +82,10 @@ class SmoothStarRating extends StatelessWidget {
     return new Material(
       color: Colors.transparent,
       child: new Wrap(
-          alignment: WrapAlignment.start,
-          spacing: spacing,
-          children: new List.generate(
-              starCount, (index) => buildStar(context, index))),
+        alignment: WrapAlignment.start,
+        spacing: spacing,
+        children: new List.generate(starCount, (index) => buildStar(context, index))
+      ),
     );
   }
 }
