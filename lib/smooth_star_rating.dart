@@ -14,35 +14,42 @@ class SmoothStarRating extends StatelessWidget {
   final bool allowHalfRating;
   final double spacing;
 
-  SmoothStarRating(
-      {this.starCount = 5,
-      this.rating = 0.0,
-      this.onRatingChanged,
-      this.color,
-      this.borderColor,
-      this.size,
-      this.spacing = 0.0,
-      this.allowHalfRating = true}) {
+  final Widget emptyStar;
+  final Widget halfStar;
+  final Widget fullStar;
+
+  SmoothStarRating({
+    this.starCount = 5,
+    this.rating = 0.0,
+    this.onRatingChanged,
+    this.color,
+    this.borderColor,
+    this.size,
+    this.emptyStar,
+    this.halfStar,
+    this.fullStar,
+    this.spacing = 0.0,
+    this.allowHalfRating = true,
+  }) {
     assert(this.rating != null);
   }
 
   Widget buildStar(BuildContext context, int index) {
-    Icon icon;
+    Widget star;
     if (index >= rating) {
-      icon = new Icon(
+      star = emptyStar ?? new Icon(
         Icons.star_border,
         color: borderColor ?? Theme.of(context).primaryColor,
         size: size ?? 25.0,
       );
-    } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) &&
-        index < rating) {
-      icon = new Icon(
+    } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) && index < rating) {
+      star = halfStar ?? new Icon(
         Icons.star_half,
         color: color ?? Theme.of(context).primaryColor,
         size: size ?? 25.0,
       );
     } else {
-      icon = new Icon(
+      star = fullStar ?? new Icon(
         Icons.star,
         color: color ?? Theme.of(context).primaryColor,
         size: size ?? 25.0,
@@ -66,7 +73,7 @@ class SmoothStarRating extends StatelessWidget {
         }
         if (this.onRatingChanged != null) onRatingChanged(newRating);
       },
-      child: icon,
+      child: star,
     );
   }
 
