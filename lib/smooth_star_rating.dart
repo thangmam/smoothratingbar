@@ -10,7 +10,7 @@ class SmoothStarRating extends StatelessWidget {
   final RatingChangeCallback onRatingChanged;
   final Color color;
   final Color borderColor;
-  final double size;
+  final double width;
   final bool allowHalfRating;
   final double spacing;
 
@@ -24,7 +24,7 @@ class SmoothStarRating extends StatelessWidget {
     this.onRatingChanged,
     this.color,
     this.borderColor,
-    this.size = 25.0,
+    this.width = 25.0,
     this.emptyStar,
     this.halfFilledStar,
     this.fullFilledStar,
@@ -40,19 +40,19 @@ class SmoothStarRating extends StatelessWidget {
       star = emptyStar ?? new Icon(
         Icons.star_border,
         color: borderColor ?? Theme.of(context).primaryColor,
-        size: size,
+        size: width,
       );
     } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) && index < rating) {
       star = halfFilledStar ?? new Icon(
         Icons.star_half,
         color: color ?? Theme.of(context).primaryColor,
-        size: size,
+        size: width,
       );
     } else {
       star = fullFilledStar ?? new Icon(
         Icons.star,
         color: color ?? Theme.of(context).primaryColor,
-        size: size,
+        size: width,
       );
     }
 
@@ -63,7 +63,7 @@ class SmoothStarRating extends StatelessWidget {
       onHorizontalDragUpdate: (dragDetails) {
         RenderBox box = context.findRenderObject();
         var _pos = box.globalToLocal(dragDetails.globalPosition);
-        var i = _pos.dx / size;
+        var i = _pos.dx / width;
         var newRating = allowHalfRating ? i : i.round().toDouble();
         if (newRating > starCount) {
           newRating = starCount.toDouble();
