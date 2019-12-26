@@ -1,3 +1,7 @@
+## [1.0.4] - 26/12/2019
+### Added support for replacing default stars icon
+### The method 'toDouble' was called on null bug fixed
+
 ## [1.0.3] - 29/05/2019
 ### Added support for a spacing between stars
 

@@ -24,8 +24,8 @@ class _MyAppState extends State<MyApp> {
             child: SmoothStarRating(
           rating: rating,
           size: 45,
-          fullRatedIconData: Icons.bluetooth_audio,
-          halfRatedIconData: Icons.bluetooth_connected,
+          fullRatedIconData: Icons.blur_off,
+          halfRatedIconData: Icons.blur_on,
           starCount: 5,
           spacing: 2.0,
           onRatingChanged: (value) {
