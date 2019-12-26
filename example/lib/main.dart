@@ -27,6 +27,7 @@ class _MyAppState extends State<MyApp> {
           fullRatedIconData: Icons.bluetooth_audio,
           halfRatedIconData: Icons.bluetooth_connected,
           starCount: 5,
+          spacing: 2.0,
           onRatingChanged: (value) {
             setState(() {
               rating = value;

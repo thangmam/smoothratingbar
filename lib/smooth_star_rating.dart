@@ -79,6 +79,7 @@ class SmoothStarRating extends StatelessWidget {
       color: Colors.transparent,
       child: new Wrap(
           alignment: WrapAlignment.start,
+          spacing: spacing,
           children: new List.generate(
               starCount, (index) => buildStar(context, index))),
     );
