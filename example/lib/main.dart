@@ -23,10 +23,12 @@ class _MyAppState extends State<MyApp> {
         body: Center(
             child: SmoothStarRating(
           rating: rating,
-          size: 45,
-          fullRatedIconData: Icons.blur_off,
-          halfRatedIconData: Icons.blur_on,
+          size: 65,
+          filledIconData: Icons.star,
+          halfFilledIconData: Icons.star_half,
+          defaultIconData: Icons.star_border,
           starCount: 5,
+          allowHalfRating: false,
           spacing: 2.0,
           onRatingChanged: (value) {
             setState(() {

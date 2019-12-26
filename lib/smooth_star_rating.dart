@@ -13,19 +13,22 @@ class SmoothStarRating extends StatelessWidget {
   final Color borderColor;
   final double size;
   final bool allowHalfRating;
-  final IconData fullRatedIconData;
-  final IconData halfRatedIconData;
+  final IconData filledIconData;
+  final IconData halfFilledIconData;
+  final IconData
+      defaultIconData; //this is needed only when having fullRatedIconData && halfRatedIconData
   final double spacing;
   SmoothStarRating({
     this.starCount = 5,
     this.spacing,
     this.rating = 0.0,
+    this.defaultIconData,
     this.onRatingChanged,
     this.color,
     this.borderColor,
     this.size = 25,
-    this.fullRatedIconData,
-    this.halfRatedIconData,
+    this.filledIconData,
+    this.halfFilledIconData,
     this.allowHalfRating = true,
   }) {
     assert(this.rating != null);
@@ -35,20 +38,20 @@ class SmoothStarRating extends StatelessWidget {
     Icon icon;
     if (index >= rating) {
       icon = new Icon(
-        fullRatedIconData != null ? fullRatedIconData : Icons.star_border,
+        defaultIconData != null ? defaultIconData : Icons.star_border,
         color: borderColor ?? Theme.of(context).primaryColor,
         size: size,
       );
     } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) &&
         index < rating) {
       icon = new Icon(
-        halfRatedIconData != null ? halfRatedIconData : Icons.star_half,
+        halfFilledIconData != null ? halfFilledIconData : Icons.star_half,
         color: color ?? Theme.of(context).primaryColor,
         size: size,
       );
     } else {
       icon = new Icon(
-        fullRatedIconData != null ? fullRatedIconData : Icons.star,
+        filledIconData != null ? filledIconData : Icons.star,
         color: color ?? Theme.of(context).primaryColor,
         size: size,
       );
