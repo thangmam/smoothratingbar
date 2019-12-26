@@ -1,6 +1,7 @@
 library smooth_star_rating;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 typedef void RatingChangeCallback(double rating);
 
@@ -12,17 +13,19 @@ class SmoothStarRating extends StatelessWidget {
   final Color borderColor;
   final double size;
   final bool allowHalfRating;
-  final double spacing;
-
-  SmoothStarRating(
-      {this.starCount = 5,
-      this.rating = 0.0,
-      this.onRatingChanged,
-      this.color,
-      this.borderColor,
-      this.size,
-      this.spacing = 0.0,
-      this.allowHalfRating = true}) {
+  final IconData fullRatedIconData;
+  final IconData halfRatedIconData;
+  SmoothStarRating({
+    this.starCount = 5,
+    this.rating = 0.0,
+    this.onRatingChanged,
+    this.color,
+    this.borderColor,
+    this.size = 25,
+    this.fullRatedIconData,
+    this.halfRatedIconData,
+    this.allowHalfRating = true,
+  }) {
     assert(this.rating != null);
   }
 
@@ -30,22 +33,22 @@ class SmoothStarRating extends StatelessWidget {
     Icon icon;
     if (index >= rating) {
       icon = new Icon(
-        Icons.star_border,
+        fullRatedIconData != null ? fullRatedIconData : Icons.star_border,
         color: borderColor ?? Theme.of(context).primaryColor,
-        size: size ?? 25.0,
+        size: size,
       );
     } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) &&
         index < rating) {
       icon = new Icon(
-        Icons.star_half,
+        halfRatedIconData != null ? halfRatedIconData : Icons.star_half,
         color: color ?? Theme.of(context).primaryColor,
-        size: size ?? 25.0,
+        size: size,
       );
     } else {
       icon = new Icon(
-        Icons.star,
+        fullRatedIconData != null ? fullRatedIconData : Icons.star,
         color: color ?? Theme.of(context).primaryColor,
-        size: size ?? 25.0,
+        size: size,
       );
     }
 
