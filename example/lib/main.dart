@@ -24,6 +24,8 @@ class _MyAppState extends State<MyApp> {
             child: SmoothStarRating(
           rating: rating,
           size: 45,
+          fullRatedIconData: Icons.bluetooth_audio,
+          halfRatedIconData: Icons.bluetooth_connected,
           starCount: 5,
           onRatingChanged: (value) {
             setState(() {
