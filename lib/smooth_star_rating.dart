@@ -26,6 +26,7 @@ class SmoothStarRating extends StatelessWidget {
   }
 
   Widget buildStar(BuildContext context, int index) {
+    final direction = Directionality.of(context);
     Icon icon;
     if (index >= rating) {
       icon = new Icon(
@@ -33,7 +34,7 @@ class SmoothStarRating extends StatelessWidget {
         color: borderColor ?? Theme.of(context).primaryColor,
         size: size ?? 25.0,
       );
-    } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) &&
+    } else if (index >= rating - (allowHalfRating ? 0.5 : 1.0) &&
         index < rating) {
       icon = new Icon(
         Icons.star_half,
@@ -55,7 +56,10 @@ class SmoothStarRating extends StatelessWidget {
       onHorizontalDragUpdate: (dragDetails) {
         RenderBox box = context.findRenderObject();
         var _pos = box.globalToLocal(dragDetails.globalPosition);
-        var i = _pos.dx / size;
+        var i = ((direction == TextDirection.rtl)
+                ? (box.size.width - _pos.dx)
+                : _pos.dx) /
+            size;
         var newRating = allowHalfRating ? i : i.round().toDouble();
         if (newRating > starCount) {
           newRating = starCount.toDouble();
