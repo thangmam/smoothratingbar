@@ -1,4 +1,4 @@
-## [1.0.4] - 26/12/2019
+## [1.0.4+1] - 26/12/2019
 ### Added support for replacing default stars icon
 ### The method 'toDouble' was called on null bug fixed
 
