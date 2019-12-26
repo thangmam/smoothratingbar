@@ -33,8 +33,8 @@ SmoothStarRating(
           starCount: 5,
           rating: rating,
           size: 40.0,
-          fullRatedIconData: Icons.blur_off,
-          halfRatedIconData: Icons.blur_on,
+          filledIconData: Icons.blur_off,
+          halfFilledIconData: Icons.blur_on,
           color: Colors.green,
           borderColor: Colors.green,
           spacing:0.0
@@ -51,8 +51,9 @@ size                            -   The size of a single star
 color                           -   The body color of star
 borderColor                     -   The border color of star
 spacing                         -   Spacing between stars(default is 0.0)
-fullRatedIconData               -   Full Rated Icon
-halfRatedIconData               -   Half Rated Icon
+filledIconData                  -   Full Rated Icon
+halfFilledIconData              -   Half Rated Icon
+defaultIconData                 -   Default Rated Icon
 ```
 
 ### Screenshots
