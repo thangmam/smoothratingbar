@@ -15,7 +15,7 @@ In your flutter project add the dependency:
 ```
     dependencies:
         ...
-        smooth_star_rating: 1.0.4+1
+        smooth_star_rating: 1.0.4+2
 ```
 
 ## Usage example

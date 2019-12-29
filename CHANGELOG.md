@@ -1,4 +1,11 @@
+## [1.0.4+2] - 29/12/2019
+### Bug fixed for issue #19 (Another exception was thrown: 'package:flutter/src/rendering/wrap.dart': Failed assertion: line 122 pos 15: 'spacing != null': is not true.)
+
 ## [1.0.4+1] - 26/12/2019
+### Added support for replacing default stars icon
+### The method 'toDouble' was called on null bug fixed
+
+## [1.0.4] - 26/12/2019
 ### Added support for replacing default stars icon
 ### The method 'toDouble' was called on null bug fixed
 

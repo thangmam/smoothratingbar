@@ -20,7 +20,7 @@ class SmoothStarRating extends StatelessWidget {
   final double spacing;
   SmoothStarRating({
     this.starCount = 5,
-    this.spacing,
+    this.spacing=0.0,
     this.rating = 0.0,
     this.defaultIconData,
     this.onRatingChanged,
