@@ -12,33 +12,32 @@ A Star rating with touch and swipe rate enabled
 ## Getting Started
 
 In your flutter project add the dependency:
-```
-    dependencies:
-        ...
-        smooth_star_rating: 1.0.4+2
+```yaml
+dependencies:
+  ...
+  smooth_star_rating: 1.0.4+2
 ```
 
 ## Usage example
-``` 
+``` dart
 import 'package:smooth_star_rating/smooth_star_rating.dart'; 
-``` 
 
-```java 
 SmoothStarRating(
-          allowHalfRating: false,
-          onRatingChanged: (v) {
-            rating = v;
-            setState(() {});
-          },
-          starCount: 5,
-          rating: rating,
-          size: 40.0,
-          filledIconData: Icons.blur_off,
-          halfFilledIconData: Icons.blur_on,
-          color: Colors.green,
-          borderColor: Colors.green,
-          spacing:0.0
-        )
+  allowHalfRating: false,
+  onRatingChanged: (value) {
+    setState(() {
+      rating = value;
+    });
+  },
+  starCount: 5,
+  rating: rating,
+  size: 40.0,
+  filledIconData: Icons.blur_off,
+  halfFilledIconData: Icons.blur_on,
+  color: Colors.green,
+  borderColor: Colors.green,
+  spacing:0.0
+);
 ```
 
 ## Constructor parameters
@@ -57,13 +56,9 @@ defaultIconData                 -   Default Rated Icon
 ```
 
 ### Screenshots
-
-#### Full Rating
-![alt text](https://raw.githubusercontent.com/thangmam/smoothratingbar/master/screenshots/fullrating.gif "Full rating")
-
-#### Half Rating
-
-![alt text](https://raw.githubusercontent.com/thangmam/smoothratingbar/master/screenshots/halfrating.gif  "Half Rating")
+|Full Rating|Half Rating|
+|--|--|
+|![Full rating](https://raw.githubusercontent.com/thangmam/smoothratingbar/master/screenshots/fullrating.gif "Full rating")|![Half rating](https://raw.githubusercontent.com/thangmam/smoothratingbar/master/screenshots/halfrating.gif  "Half Rating")|
 
 ### MIT LICENSE
 
