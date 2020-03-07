@@ -1,6 +1,6 @@
 library smooth_star_rating;
 
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 typedef void RatingChangeCallback(double rating);
@@ -20,7 +20,7 @@ class SmoothStarRating extends StatelessWidget {
   final double spacing;
   SmoothStarRating({
     this.starCount = 5,
-    this.spacing=0.0,
+    this.spacing = 0.0,
     this.rating = 0.0,
     this.defaultIconData,
     this.onRatingChanged,
@@ -37,56 +37,94 @@ class SmoothStarRating extends StatelessWidget {
   Widget buildStar(BuildContext context, int index) {
     Icon icon;
     if (index >= rating) {
-      icon = new Icon(
+      icon = Icon(
         defaultIconData != null ? defaultIconData : Icons.star_border,
         color: borderColor ?? Theme.of(context).primaryColor,
         size: size,
       );
     } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) &&
         index < rating) {
-      icon = new Icon(
+      icon = Icon(
         halfFilledIconData != null ? halfFilledIconData : Icons.star_half,
         color: color ?? Theme.of(context).primaryColor,
         size: size,
       );
     } else {
-      icon = new Icon(
+      icon = Icon(
         filledIconData != null ? filledIconData : Icons.star,
         color: color ?? Theme.of(context).primaryColor,
         size: size,
       );
     }
+    final Widget star = kIsWeb
+        ? MouseRegion(
+            onExit: (event) =>
+                this.onRatingChanged != null ? onRatingChanged(0) : null,
+            onHover: (event) {
+              RenderBox box = context.findRenderObject();
+              var _pos = box.globalToLocal(event.position);
+              var i = _pos.dx / size;
+              var newRating = allowHalfRating ? i : i.round().toDouble();
+              if (newRating > starCount) {
+                newRating = starCount.toDouble();
+              }
+              if (newRating < 0) {
+                newRating = 0.0;
+              }
+              if (this.onRatingChanged != null) onRatingChanged(newRating);
+            },
+            child: GestureDetector(
+              onTap: () {
+                if (this.onRatingChanged != null) onRatingChanged(index + 1.0);
+              },
+              onHorizontalDragUpdate: (dragDetails) {
+                RenderBox box = context.findRenderObject();
+                var _pos = box.globalToLocal(dragDetails.globalPosition);
+                var i = _pos.dx / size;
+                var newRating = allowHalfRating ? i : i.round().toDouble();
+                if (newRating > starCount) {
+                  newRating = starCount.toDouble();
+                }
+                if (newRating < 0) {
+                  newRating = 0.0;
+                }
+                if (this.onRatingChanged != null) onRatingChanged(newRating);
+              },
+              child: icon,
+            ),
+          )
+        : GestureDetector(
+            onTap: () {
+              if (this.onRatingChanged != null) onRatingChanged(index + 1.0);
+            },
+            onHorizontalDragUpdate: (dragDetails) {
+              RenderBox box = context.findRenderObject();
+              var _pos = box.globalToLocal(dragDetails.globalPosition);
+              var i = _pos.dx / size;
+              var newRating = allowHalfRating ? i : i.round().toDouble();
+              if (newRating > starCount) {
+                newRating = starCount.toDouble();
+              }
+              if (newRating < 0) {
+                newRating = 0.0;
+              }
+              if (this.onRatingChanged != null) onRatingChanged(newRating);
+            },
+            child: icon,
+          );
 
-    return new GestureDetector(
-      onTap: () {
-        if (this.onRatingChanged != null) onRatingChanged(index + 1.0);
-      },
-      onHorizontalDragUpdate: (dragDetails) {
-        RenderBox box = context.findRenderObject();
-        var _pos = box.globalToLocal(dragDetails.globalPosition);
-        var i = _pos.dx / size;
-        var newRating = allowHalfRating ? i : i.round().toDouble();
-        if (newRating > starCount) {
-          newRating = starCount.toDouble();
-        }
-        if (newRating < 0) {
-          newRating = 0.0;
-        }
-        if (this.onRatingChanged != null) onRatingChanged(newRating);
-      },
-      child: icon,
-    );
+    return star;
   }
 
   @override
   Widget build(BuildContext context) {
-    return new Material(
+    return Material(
       color: Colors.transparent,
-      child: new Wrap(
+      child: Wrap(
           alignment: WrapAlignment.start,
           spacing: spacing,
-          children: new List.generate(
-              starCount, (index) => buildStar(context, index))),
+          children:
+              List.generate(starCount, (index) => buildStar(context, index))),
     );
   }
 }
