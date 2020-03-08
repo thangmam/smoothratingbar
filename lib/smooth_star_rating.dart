@@ -22,13 +22,13 @@ class SmoothStarRating extends StatelessWidget {
     this.starCount = 5,
     this.spacing = 0.0,
     this.rating = 0.0,
-    this.defaultIconData,
+    this.defaultIconData = Icons.star_border,
     this.onRatingChanged,
     this.color,
     this.borderColor,
     this.size = 25,
-    this.filledIconData,
-    this.halfFilledIconData,
+    this.filledIconData = Icons.star,
+    this.halfFilledIconData = Icons.star_half,
     this.allowHalfRating = true,
   }) {
     assert(this.rating != null);
@@ -38,20 +38,20 @@ class SmoothStarRating extends StatelessWidget {
     Icon icon;
     if (index >= rating) {
       icon = Icon(
-        defaultIconData != null ? defaultIconData : Icons.star_border,
+        defaultIconData,
         color: borderColor ?? Theme.of(context).primaryColor,
         size: size,
       );
     } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) &&
         index < rating) {
       icon = Icon(
-        halfFilledIconData != null ? halfFilledIconData : Icons.star_half,
+        halfFilledIconData,
         color: color ?? Theme.of(context).primaryColor,
         size: size,
       );
     } else {
       icon = Icon(
-        filledIconData != null ? filledIconData : Icons.star,
+        filledIconData,
         color: color ?? Theme.of(context).primaryColor,
         size: size,
       );
