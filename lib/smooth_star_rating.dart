@@ -20,7 +20,7 @@ class SmoothStarRating extends StatelessWidget {
   final double spacing;
   SmoothStarRating({
     this.starCount = 5,
-    this.spacing=0.0,
+    this.spacing = 0.0,
     this.rating = 0.0,
     this.defaultIconData,
     this.onRatingChanged,
@@ -65,7 +65,20 @@ class SmoothStarRating extends StatelessWidget {
         RenderBox box = context.findRenderObject();
         var _pos = box.globalToLocal(dragDetails.globalPosition);
         var i = _pos.dx / size;
-        var newRating = allowHalfRating ? i : i.round().toDouble();
+
+        double newRating;
+        if (allowHalfRating) {
+          newRating = i.roundToDouble();
+        } else {
+          if (i % 1 > 0.7)
+            newRating = i.roundToDouble();
+          else if (i % 1 < 0.3)
+            newRating = i.floorToDouble();
+          else
+            newRating = i.floorToDouble() + 0.5;
+        }
+
+        // var newRating = allowHalfRating ? i%1>.6?i.round().toDouble():i-i%1 : i.round().toDouble();
         if (newRating > starCount) {
           newRating = starCount.toDouble();
         }
