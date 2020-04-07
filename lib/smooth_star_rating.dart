@@ -72,7 +72,10 @@ class SmoothStarRating extends StatelessWidget {
         } else {
           if (i % 1 > 0.7)
             newRating = i.roundToDouble();
-          else if (i % 1 < 0.3) newRating = i.floorToDouble();
+          else if (i % 1 < 0.3)
+            newRating = i.floorToDouble();
+          else
+            newRating = i.floorToDouble() + 0.5;
         }
 
         // var newRating = allowHalfRating ? i%1>.6?i.round().toDouble():i-i%1 : i.round().toDouble();
