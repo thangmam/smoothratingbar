@@ -1,11 +1,11 @@
 library smooth_star_rating;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 
 typedef void RatingChangeCallback(double rating);
 
 class SmoothStarRating extends StatelessWidget {
+  final Key key;
   final int starCount;
   final double rating;
   final RatingChangeCallback onRatingChanged;
@@ -19,6 +19,7 @@ class SmoothStarRating extends StatelessWidget {
       defaultIconData; //this is needed only when having fullRatedIconData && halfRatedIconData
   final double spacing;
   SmoothStarRating({
+    this.key,
     this.starCount = 5,
     this.spacing=0.0,
     this.rating = 0.0,
@@ -30,7 +31,7 @@ class SmoothStarRating extends StatelessWidget {
     this.filledIconData,
     this.halfFilledIconData,
     this.allowHalfRating = true,
-  }) {
+  }) : super(key: key) {
     assert(this.rating != null);
   }
 
