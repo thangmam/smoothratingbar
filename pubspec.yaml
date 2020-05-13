@@ -1,6 +1,6 @@
 name: smooth_star_rating
 description: A smooth rating bar
-version: 1.0.4+2
+version: 1.1.0
 homepage: https://github.com/thangmam/smoothratingbar.git
 
 environment:
