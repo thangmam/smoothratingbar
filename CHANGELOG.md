@@ -1,6 +1,8 @@
 ## [1.1.0+1] - 14/05/2020
 ### - Readme updated
 ### - Pubspec version increment
+### - PR for Web support accepted.Thank you [NanoDashDev](https://github.com/NanoDashDev)
+### - Intentional api change
 
 ## [1.1.0] - 14/05/2020
 ### - PR for Web support accepted.Thank you [NanoDashDev](https://github.com/NanoDashDev)
