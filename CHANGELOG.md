@@ -1,3 +1,6 @@
+## [1.1.1] - 22/05/2020
+### - isReadOnly property added.False by default
+
 ## [1.1.0+1] - 14/05/2020
 ### - Readme updated
 ### - Pubspec version increment

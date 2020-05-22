@@ -9,7 +9,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var rating = 0.0;
+  var rating = 3.0;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +23,7 @@ class _MyAppState extends State<MyApp> {
         body: Center(
             child: SmoothStarRating(
           rating: rating,
+          isReadOnly: false,
           size: 80,
           filledIconData: Icons.star,
           halfFilledIconData: Icons.star_half,

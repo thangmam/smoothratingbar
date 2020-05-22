@@ -1,7 +1,8 @@
 
 A Star rating with touch and swipe rate enabled
 
-* Added Web Support
+* Read only and adjustable rating
+* Web Support
 * Supports replacing default star icons with desired IconData
 * Supports half rate and full rate (1.0 or 0.5)
 * Swipe for incrementing/decrementing rate amount
@@ -17,7 +18,7 @@ In your flutter project add the dependency:
 ```
     dependencies:
         ...
-        smooth_star_rating: 1.1.0+1
+        smooth_star_rating: 1.1.1
 ```
 
 ## Usage example
@@ -33,6 +34,7 @@ import 'package:smooth_star_rating/smooth_star_rating.dart';
           starCount: 5,
           rating: rating,
           size: 40.0,
+          isReadOnly:true,
           fullRatedIconData: Icons.blur_off,
           halfRatedIconData: Icons.blur_on,
           color: Colors.green,
@@ -54,6 +56,7 @@ borderColor                     -   The border color of star
 spacing                         -   Spacing between stars(default is 0.0)
 fullRatedIconData               -   Full Rated Icon
 halfRatedIconData               -   Half Rated Icon
+isReadOnly                      -   true for read only star.False by default
 ```
 
 ### Screenshots
