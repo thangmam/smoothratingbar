@@ -30,7 +30,8 @@ class SmoothStarRating extends StatelessWidget {
     this.filledIconData,
     this.halfFilledIconData,
     this.allowHalfRating = true,
-  }) {
+    Key key,
+  }): super(key: key) {
     assert(this.rating != null);
   }
 
