@@ -1,10 +1,10 @@
 name: smooth_star_rating
 description: A smooth rating bar
-version: 1.0.4+2
+version: 2.0.0
 homepage: https://github.com/thangmam/smoothratingbar.git
 
 environment:
-  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:

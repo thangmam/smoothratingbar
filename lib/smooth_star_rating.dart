@@ -1,26 +1,25 @@
 library smooth_star_rating;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 
 typedef void RatingChangeCallback(double rating);
 
 class SmoothStarRating extends StatelessWidget {
   final int starCount;
   final double rating;
-  final RatingChangeCallback onRatingChanged;
-  final Color color;
-  final Color borderColor;
+  final RatingChangeCallback? onRatingChanged;
+  final Color? color;
+  final Color? borderColor;
   final double size;
   final bool allowHalfRating;
-  final IconData filledIconData;
-  final IconData halfFilledIconData;
-  final IconData
+  final IconData? filledIconData;
+  final IconData? halfFilledIconData;
+  final IconData?
       defaultIconData; //this is needed only when having fullRatedIconData && halfRatedIconData
   final double spacing;
   SmoothStarRating({
     this.starCount = 5,
-    this.spacing=0.0,
+    this.spacing = 0.0,
     this.rating = 0.0,
     this.defaultIconData,
     this.onRatingChanged,
@@ -30,9 +29,7 @@ class SmoothStarRating extends StatelessWidget {
     this.filledIconData,
     this.halfFilledIconData,
     this.allowHalfRating = true,
-  }) {
-    assert(this.rating != null);
-  }
+  });
 
   Widget buildStar(BuildContext context, int index) {
     Icon icon;
@@ -59,10 +56,10 @@ class SmoothStarRating extends StatelessWidget {
 
     return new GestureDetector(
       onTap: () {
-        if (this.onRatingChanged != null) onRatingChanged(index + 1.0);
+        if (this.onRatingChanged != null) onRatingChanged!(index + 1.0);
       },
       onHorizontalDragUpdate: (dragDetails) {
-        RenderBox box = context.findRenderObject();
+        RenderBox box = context.findRenderObject() as RenderBox;
         var _pos = box.globalToLocal(dragDetails.globalPosition);
         var i = _pos.dx / size;
         var newRating = allowHalfRating ? i : i.round().toDouble();
@@ -72,7 +69,7 @@ class SmoothStarRating extends StatelessWidget {
         if (newRating < 0) {
           newRating = 0.0;
         }
-        if (this.onRatingChanged != null) onRatingChanged(newRating);
+        if (this.onRatingChanged != null) onRatingChanged!(newRating);
       },
       child: icon,
     );
