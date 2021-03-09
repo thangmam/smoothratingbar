@@ -10,14 +10,14 @@ typedef void RatingChangeCallback(double rating);
 class SmoothStarRating extends StatefulWidget {
   final int starCount;
   final double rating;
-  final RatingChangeCallback onRated;
-  final Color color;
-  final Color borderColor;
+  final RatingChangeCallback? onRated;
+  final Color? color;
+  final Color? borderColor;
   final double size;
   final bool allowHalfRating;
-  final IconData filledIconData;
-  final IconData halfFilledIconData;
-  final IconData
+  final IconData? filledIconData;
+  final IconData? halfFilledIconData;
+  final IconData?
       defaultIconData; //this is needed only when having fullRatedIconData && halfRatedIconData
   final double spacing;
   final bool isReadOnly;
@@ -47,8 +47,8 @@ class _SmoothStarRatingState extends State<SmoothStarRating> {
 
   //tracks for user tapping on this widget
   bool isWidgetTapped = false;
-  double currentRating;
-  Timer debounceTimer;
+  late double currentRating;
+  Timer? debounceTimer;
   @override
   void initState() {
     currentRating = widget.rating;
@@ -78,7 +78,7 @@ class _SmoothStarRatingState extends State<SmoothStarRating> {
     Icon icon;
     if (index >= currentRating) {
       icon = Icon(
-        widget.defaultIconData,
+          widget.defaultIconData != null ?  widget.defaultIconData : Icons.star_border,
         color: widget.borderColor ?? Theme.of(context).primaryColor,
         size: widget.size,
       );
@@ -87,13 +87,13 @@ class _SmoothStarRatingState extends State<SmoothStarRating> {
                 (widget.allowHalfRating ? halfStarThreshold : 1.0) &&
         index < currentRating) {
       icon = Icon(
-        widget.halfFilledIconData,
+        widget.halfFilledIconData != null ?  widget.halfFilledIconData : Icons.star_half,
         color: widget.color ?? Theme.of(context).primaryColor,
         size: widget.size,
       );
     } else {
       icon = Icon(
-        widget.filledIconData,
+        widget.filledIconData != null ?  widget.filledIconData : Icons.star,
         color: widget.color ?? Theme.of(context).primaryColor,
         size: widget.size,
       );
@@ -114,7 +114,7 @@ class _SmoothStarRatingState extends State<SmoothStarRating> {
                   isWidgetTapped = false; //reset
                 },
                 onHover: (event) {
-                  RenderBox box = context.findRenderObject();
+                  RenderBox box = context.findRenderObject() as RenderBox;
                   var _pos = box.globalToLocal(event.position);
                   var i = _pos.dx / widget.size;
                   var newRating =
@@ -133,7 +133,7 @@ class _SmoothStarRatingState extends State<SmoothStarRating> {
                   onTapDown: (detail) {
                     isWidgetTapped = true;
 
-                    RenderBox box = context.findRenderObject();
+                    RenderBox box = context.findRenderObject() as RenderBox;
                     var _pos = box.globalToLocal(detail.globalPosition);
                     var i = ((_pos.dx - widget.spacing) / widget.size);
                     var newRating =
@@ -148,13 +148,13 @@ class _SmoothStarRatingState extends State<SmoothStarRating> {
                       currentRating = newRating;
                     });
                     if (widget.onRated != null) {
-                      widget.onRated(normalizeRating(currentRating));
+                      widget.onRated!.call(normalizeRating(currentRating));
                     }
                   },
                   onHorizontalDragUpdate: (dragDetails) {
                     isWidgetTapped = true;
 
-                    RenderBox box = context.findRenderObject();
+                    RenderBox box = context.findRenderObject() as RenderBox;
                     var _pos = box.globalToLocal(dragDetails.globalPosition);
                     var i = _pos.dx / widget.size;
                     var newRating =
@@ -172,7 +172,7 @@ class _SmoothStarRatingState extends State<SmoothStarRating> {
                     debounceTimer = Timer(Duration(milliseconds: 100), () {
                       if (widget.onRated != null) {
                         currentRating = normalizeRating(newRating);
-                        widget.onRated(currentRating);
+                        widget.onRated!.call(currentRating);
                       }
                     });
                   },
@@ -181,7 +181,7 @@ class _SmoothStarRatingState extends State<SmoothStarRating> {
               )
             : GestureDetector(
                 onTapDown: (detail) {
-                  RenderBox box = context.findRenderObject();
+                  RenderBox box = context.findRenderObject() as RenderBox;
                   var _pos = box.globalToLocal(detail.globalPosition);
                   var i = ((_pos.dx - widget.spacing) / widget.size);
                   var newRating =
@@ -198,10 +198,10 @@ class _SmoothStarRatingState extends State<SmoothStarRating> {
                   });
                 },
                 onTapUp: (e) {
-                  if (widget.onRated != null) widget.onRated(currentRating);
+                  if (widget.onRated != null) widget.onRated!.call(currentRating);
                 },
                 onHorizontalDragUpdate: (dragDetails) {
-                  RenderBox box = context.findRenderObject();
+                  RenderBox box = context.findRenderObject() as RenderBox;
                   var _pos = box.globalToLocal(dragDetails.globalPosition);
                   var i = _pos.dx / widget.size;
                   var newRating =
@@ -219,7 +219,7 @@ class _SmoothStarRatingState extends State<SmoothStarRating> {
                   debounceTimer = Timer(Duration(milliseconds: 100), () {
                     if (widget.onRated != null) {
                       currentRating = normalizeRating(newRating);
-                      widget.onRated(currentRating);
+                      widget.onRated!.call(currentRating);
                     }
                   });
                 },
