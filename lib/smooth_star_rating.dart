@@ -2,7 +2,7 @@ library smooth_star_rating;
 
 import 'package:flutter/material.dart';
 
-typedef void RatingChangeCallback(double rating);
+typedef RatingChangeCallback = void Function(double rating);
 
 class SmoothStarRating extends StatelessWidget {
   final int starCount;
@@ -17,7 +17,8 @@ class SmoothStarRating extends StatelessWidget {
   final IconData?
       defaultIconData; //this is needed only when having fullRatedIconData && halfRatedIconData
   final double spacing;
-  SmoothStarRating({
+  const SmoothStarRating({
+    Key? key,
     this.starCount = 5,
     this.spacing = 0.0,
     this.rating = 0.0,
@@ -29,39 +30,43 @@ class SmoothStarRating extends StatelessWidget {
     this.filledIconData,
     this.halfFilledIconData,
     this.allowHalfRating = true,
-  });
+  }) : super(key: key);
 
   Widget buildStar(BuildContext context, int index) {
     Icon icon;
+    final key = ValueKey('star${index + 1}');
     if (index >= rating) {
-      icon = new Icon(
-        defaultIconData != null ? defaultIconData : Icons.star_border,
+      icon = Icon(
+        defaultIconData ?? Icons.star_border,
+        key: key,
         color: borderColor ?? Theme.of(context).primaryColor,
         size: size,
       );
     } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) &&
-        index < rating) {
-      icon = new Icon(
-        halfFilledIconData != null ? halfFilledIconData : Icons.star_half,
+        index.toDouble() < rating) {
+      icon = Icon(
+        halfFilledIconData ?? Icons.star_half,
+        key: key,
         color: color ?? Theme.of(context).primaryColor,
         size: size,
       );
     } else {
-      icon = new Icon(
-        filledIconData != null ? filledIconData : Icons.star,
+      icon = Icon(
+        filledIconData ?? Icons.star,
+        key: key,
         color: color ?? Theme.of(context).primaryColor,
         size: size,
       );
     }
 
-    return new GestureDetector(
+    return GestureDetector(
       onTap: () {
-        if (this.onRatingChanged != null) onRatingChanged!(index + 1.0);
+        onRatingChanged?.call(index + 1.0);
       },
       onHorizontalDragUpdate: (dragDetails) {
-        RenderBox box = context.findRenderObject() as RenderBox;
-        var _pos = box.globalToLocal(dragDetails.globalPosition);
-        var i = _pos.dx / size;
+        final box = context.findRenderObject()! as RenderBox;
+        final _pos = box.globalToLocal(dragDetails.globalPosition);
+        final i = _pos.dx / size;
         var newRating = allowHalfRating ? i : i.round().toDouble();
         if (newRating > starCount) {
           newRating = starCount.toDouble();
@@ -69,7 +74,7 @@ class SmoothStarRating extends StatelessWidget {
         if (newRating < 0) {
           newRating = 0.0;
         }
-        if (this.onRatingChanged != null) onRatingChanged!(newRating);
+        onRatingChanged?.call(newRating);
       },
       child: icon,
     );
@@ -77,13 +82,13 @@ class SmoothStarRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Material(
+    return Material(
       color: Colors.transparent,
-      child: new Wrap(
-          alignment: WrapAlignment.start,
-          spacing: spacing,
-          children: new List.generate(
-              starCount, (index) => buildStar(context, index))),
+      child: Wrap(
+        spacing: spacing,
+        children:
+            List.generate(starCount, (index) => buildStar(context, index)),
+      ),
     );
   }
 }

@@ -1,6 +1,6 @@
 name: smooth_star_rating
 description: A smooth rating bar
-version: 2.0.0
+version: 2.0.1
 homepage: https://github.com/thangmam/smoothratingbar.git
 
 environment:
@@ -13,6 +13,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  lint: ^1.8.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
