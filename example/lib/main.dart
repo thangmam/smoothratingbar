@@ -9,7 +9,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var rating = 0.0;
+  double rating = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -21,21 +21,22 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Center(
-            child: SmoothStarRating(
-          rating: rating,
-          size: 65,
-          filledIconData: Icons.star,
-          halfFilledIconData: Icons.star_half,
-          defaultIconData: Icons.star_border,
-          starCount: 5,
-          allowHalfRating: false,
-          spacing: 2.0,
-          onRatingChanged: (value) {
-            setState(() {
-              rating = value;
-            });
-          },
-        )),
+          child: SmoothStarRating(
+            rating: rating,
+            size: 55,
+            filledIconData: Icons.star,
+            halfFilledIconData: Icons.star_half,
+            defaultIconData: Icons.star_border,
+            starCount: 6,
+            allowHalfRating: false,
+            spacing: 2.0,
+            onRatingChanged: (value) {
+              setState(() {
+                rating = value;
+              });
+            },
+          ),
+        ),
       ),
     );
   }
